@@ -113,3 +113,15 @@ p {
 	margin-bottom: 10px;
 	margin-top: 20px;
 }
+
+section#index .thumbnail {
+	border: none;
+}
+
+section#index h2 {
+	font-size: 2em;
+}
+
+section#index .thumbnail img {
+	border-radius: 300px;
+}

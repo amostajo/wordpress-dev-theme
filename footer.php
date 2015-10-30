@@ -14,7 +14,7 @@ use DevTemplates\Main as Configuration;
 			<div class="footer-above">
 				<div class="container">
 					<div class="row">
-						<div class="footer-col col-md-6">
+						<div class="footer-col col-sm-4">
 							<h3>View on Github</h3>
 							<ul class="list-inline">
 								<li>
@@ -24,8 +24,27 @@ use DevTemplates\Main as Configuration;
 								</li>
 							</ul>
 						</div>
+						<div class="footer col-sm-4">
+							<h3>Support us</h3>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick">
+								<input type="hidden" name="hosted_button_id" value="GUPTJ4KP5YMG4">
+								<input type="image"
+									src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
+									border="0"
+									name="submit"
+									alt="PayPal - The safer, easier way to pay online!"
+								>
+								<img alt=""
+									border="0"
+									src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
+									width="1"
+									height="1"
+								>
+							</form>
+						</div>
 						<?php if ( has_nav_menu( Configuration::MENU_FOOTER ) ) { ?>
-							<div class="footer-col col-md-6">
+							<div class="footer-col col-sm-4">
 								<h3>Links</h3>
 								<?php theme()->nav( Configuration::MENU_FOOTER ) ?>
 							</div>

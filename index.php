@@ -19,28 +19,19 @@
 						<img class="img-responsive" src="<?php echo get_template_directory_uri() ?>/img/logo.png" alt="">
 						<h1 class="name">Wordpress Development Templates</h1>
 						<hr class="star-light">
-						<span class="skills">Speed up your development with this elegant framework.</span>
+						<span class="skills">A powerful framework for custom themes and plugins</span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</header>
 
-	<section id="content">
-        <div class="container">
-            <div class="row">
+	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+			<?php the_content() ?>
 
-						<?php the_content() ?>
+		<?php endwhile; ?>
 
-					<?php endwhile; ?>
-
-				<?php endif; ?>
-
-			</div>
-		</div>
-
-	</section>
+	<?php endif; ?>
 
 <?php get_footer() ?>
