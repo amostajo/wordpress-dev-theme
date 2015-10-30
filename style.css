@@ -20,70 +20,96 @@ Tags: bootstrap, IronSummitMedia
 Text Domain: dev-templates
 */
 
+p {
+	font-size: 18px;
+	margin: 0 0 15px;
+}
+
 .navbar-default {
-    background-color: #2c3e50;
-    border-color: transparent;
+	background-color: #2c3e50;
+	border-color: transparent;
 }
 
 .navbar-default .navbar-brand {
-  color: #ffffff;
+	color: #ffffff;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #18bc9c;
-  background-color: transparent;
+	color: #18bc9c;
+	background-color: transparent;
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #ffffff;
+	color: #ffffff;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #18bc9c;
-  background-color: transparent;
+	color: #18bc9c;
+	background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #ffffff;
-  background-color: #1a242f;
+	color: #ffffff;
+	background-color: #1a242f;
 }
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
 .navbar-default .navbar-nav > .disabled > a:focus {
-  color: #cccccc;
-  background-color: transparent;
+	color: #cccccc;
+	background-color: transparent;
 }
 .navbar-default .navbar-toggle {
-  border-color: #1a242f;
+	border-color: #1a242f;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #1a242f;
+	background-color: #1a242f;
 }
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #ffffff;
+	background-color: #ffffff;
 }
 
 .menu .menu-item a[href="#"] {
-  text-decoration: none;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: larger;
-  cursor: default;
-  color: #777;
-  padding-bottom: 5px;
-  display: block;
-  border-bottom: 1px dotted #aaa;
-  margin-bottom: 5px;
-  margin-top: 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: larger;
+	cursor: default;
+	color: #777;
+	padding-bottom: 5px;
+	display: block;
+	border-bottom: 1px dotted #aaa;
+	margin-bottom: 5px;
+	margin-top: 20px;
 }
 
 .menu-documentation-container .sub-menu {
-  list-style: none;
+	list-style: none;
 }
 
 .menu-documentation-container {
-    padding-right: 30px;
-    border-right: 1px solid #EAEAEA;
+	padding-right: 30px;
+	border-right: 1px solid #EAEAEA;
+}
+
+#documentation h1 {
+	border-bottom: 1px solid #f7f7f7;
+	padding-bottom: 10px;
+	margin-bottom: 30px;
+}
+
+#documentation h3 {
+	border-bottom: 1px solid #f7f7f7;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	margin-top: 40px;
+}
+
+#documentation h4,
+#documentation h5 {
+	border-bottom: 1px solid #F9F9F9;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	margin-top: 20px;
 }

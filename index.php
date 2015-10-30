@@ -16,9 +16,10 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="intro-text">
-						<span class="name">Start Bootstrap</span>
+						<img class="img-responsive" src="<?php echo get_template_directory_uri() ?>/img/logo.png" alt="">
+						<h1 class="name">Wordpress Development Templates</h1>
 						<hr class="star-light">
-						<span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
+						<span class="skills">Speed up your development with this elegant framework.</span>
 					</div>
 				</div>
 			</div>
