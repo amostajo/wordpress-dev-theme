@@ -1,0 +1,89 @@
+/*
+Theme Name: Dev Templates
+
+Theme URI: https://github.com/amostajo/wordpress-dev-theme
+
+Author: Alejandro Mostajo, IronSummitMedia
+
+Author URI: https://about.me/amostajo
+
+Description: Theme created for wordpress-dev.evopiru.com. Based on template: https://github.com/IronSummitMedia/startbootstrap-freelancer.
+
+Version: 1.0
+
+License: MIT
+
+License URI: https://opensource.org/licenses/MIT
+
+Tags: bootstrap, IronSummitMedia
+
+Text Domain: dev-templates
+*/
+
+.navbar-default {
+    background-color: #2c3e50;
+    border-color: transparent;
+}
+
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #18bc9c;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #18bc9c;
+  background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #1a242f;
+}
+.navbar-default .navbar-nav > .disabled > a,
+.navbar-default .navbar-nav > .disabled > a:hover,
+.navbar-default .navbar-nav > .disabled > a:focus {
+  color: #cccccc;
+  background-color: transparent;
+}
+.navbar-default .navbar-toggle {
+  border-color: #1a242f;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #1a242f;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+
+.menu .menu-item a[href="#"] {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: larger;
+  cursor: default;
+  color: #777;
+  padding-bottom: 5px;
+  display: block;
+  border-bottom: 1px dotted #aaa;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.menu-documentation-container .sub-menu {
+  list-style: none;
+}
+
+.menu-documentation-container {
+    padding-right: 30px;
+    border-right: 1px solid #EAEAEA;
+}

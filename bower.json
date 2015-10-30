@@ -1,0 +1,23 @@
+{
+  "name": "dev-templates",
+  "homepage": "https://github.com/amostajo/wordpress-dev-theme",
+  "authors": [
+    "Alejandro Mostajo <amostajo@gmail.com>"
+  ],
+  "description": "Wordpress Theme for wordpress-dev.evopiru.com",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "wordpress",
+    "theme"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "font-awesome": "fontawesome#~4.4.0",
+    "jquery-easing-original": "~1.3.2",
+    "classie": "~1.0.1",
+    "cbp-animated-header-fork": "~0.0.1"
+  }
+}
