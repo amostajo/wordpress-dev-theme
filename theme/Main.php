@@ -2,6 +2,7 @@
 
 namespace DevTemplates;
 
+use Amostajo\LightweightMVC\Request;
 use Amostajo\WPPluginCore\Plugin as Theme;
 
 /**
@@ -38,6 +39,13 @@ class Main extends Theme
 	const MENU_DOCUMENTATION = 'devt_menu_documentation';
 
 	/**
+	 * Identification KEY for admin settings menu.
+	 * @since 1.0.0
+	 * @var string
+	 */
+	const ADMIN_MENU_SETTINGS = 'devt_admin_menu_settings';
+
+	/**
 	 * Constructor.
 	 * Declares HOOKS and FILTERS.
 	 * @since 1.0.0
@@ -50,12 +58,42 @@ class Main extends Theme
 	}
 
 	/**
+	 * Admin Constructor.
+	 * Declares HOOKS and FILTERS.
+	 * @since 1.0.0
+	 */
+	public function on_admin()
+	{
+		add_action( 'admin_init', [ &$this, 'admin_start' ] );
+		add_action( 'admin_menu', [ &$this, 'admin_menu' ] );
+		add_action( 'save_post', [ &$this, 'save_post' ], 10, 2 );
+	}
+
+	/**
 	 * Inits theme on Wordpress.
 	 * @since 1.0.0
 	 */
 	public function start()
 	{
 		$this->mvc->call( 'ConfigController@start' );
+	}
+
+	/**
+	 * Inits Wordpress admin dashboard.
+	 * @since 1.0.0
+	 */
+	public function admin_start()
+	{
+		$this->mvc->call( 'AdminController@start' );
+	}
+
+	/**
+	 * Registers admin menu.
+	 * @since 1.0.0
+	 */
+	public function admin_menu()
+	{
+		$this->mvc->call( 'AdminController@menu' );
 	}
 
 	/**
@@ -89,5 +127,30 @@ class Main extends Theme
 	public function nav($key)
 	{
 		$this->mvc->call( 'ConfigController@nav', $key );
+	}
+
+	/**
+	 * Displays a specific section of a page.
+	 * @since 1.0.0
+	 *
+	 * @param int 	 $post_id post ID.
+	 * @param string $name    Section name to display.
+	 */
+	public function section( $post_id, $name = 'section_head' )
+	{
+		$this->mvc->call( 'PageController@section', $post_id, $name );
+	}
+
+	/**
+	 * Save post hook.
+	 * @since 1.0.0
+	 *
+	 * @param int $post_id Post id.
+	 */
+	public function save_post( $post_id )
+	{
+		if ( Request::input( 'post_type' ) == 'page' ) {
+			$this->mvc->call( 'PageController@save', $post_id );
+		}
 	}
 }

@@ -88,9 +88,17 @@ class ConfigController extends Controller
 			'1.0.3',
 			true
 		);
+		wp_register_script(
+			'github-cards',
+			'//cdn.jsdelivr.net/github-cards/latest/widget.js',
+			[],
+			'1.0.2',
+			true
+		);
 		if ( ! is_admin() ) {
 			wp_enqueue_style( 'freelancer-theme' );
 			wp_enqueue_script( 'freelancer-theme' );
+			wp_enqueue_script( 'github-cards' );
 		}
 	}
 

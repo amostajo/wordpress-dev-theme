@@ -125,3 +125,16 @@ section#index h2 {
 section#index .thumbnail img {
 	border-radius: 300px;
 }
+
+a.btn.btn-download {
+    transition: all .3s ease-in-out;
+	background-color: #f2f2f2;
+}
+
+a.btn.btn-download:hover {
+	background-color: #FFF;
+}
+
+section#head .downloads .icon {
+	font-size: 100px;
+}
