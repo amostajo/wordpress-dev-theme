@@ -54,7 +54,8 @@ class Main extends Theme
 	{
 		add_action( 'init', [ &$this, 'start' ] );
 		add_action( 'wp_enqueue_scripts', [ &$this, 'enqueue' ] );
-		add_filter('body_class', [ &$this, 'body_class' ] );
+		add_filter( 'body_class', [ &$this, 'body_class' ] );
+		add_action( 'after_switch_theme', 'flush_rewrite_rules' );
 	}
 
 	/**
@@ -76,6 +77,15 @@ class Main extends Theme
 	public function start()
 	{
 		$this->mvc->call( 'ConfigController@start' );
+	}
+
+	/**
+	 * Activates the theme.
+	 * @since 1.0.0
+	 */
+	public function activation()
+	{
+		$this->mvc->call( 'ConfigController@activation' );
 	}
 
 	/**
@@ -113,7 +123,7 @@ class Main extends Theme
 	 *
 	 * @return array
 	 */
-	public function body_class($classes)
+	public function body_class( $classes )
 	{
 		return $this->mvc->action( 'ConfigController@body_class', $classes );
 	}
@@ -124,7 +134,7 @@ class Main extends Theme
 	 *
 	 * @param string $key Key name of the menu.
 	 */
-	public function nav($key)
+	public function nav( $key )
 	{
 		$this->mvc->call( 'ConfigController@nav', $key );
 	}
@@ -149,8 +159,24 @@ class Main extends Theme
 	 */
 	public function save_post( $post_id )
 	{
-		if ( Request::input( 'post_type' ) == 'page' ) {
-			$this->mvc->call( 'PageController@save', $post_id );
+		switch (Request::input( 'post_type' )) {
+			case 'page':
+				$this->mvc->call( 'PageController@save', $post_id );
+				break;
+			case 'addon':
+				$this->mvc->call( 'AddonController@save', $post_id );
+				break;
 		}
+	}
+
+	/**
+	 * Displays the ADDON page.
+	 * @since 1.0.0
+	 *
+	 * @param object $post WP_post
+	 */
+	public function addon( $post )
+	{
+		$this->mvc->call( 'AddonController@display', $post );
 	}
 }

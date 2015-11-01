@@ -23,7 +23,9 @@ class AdminController extends Controller
 	 */
 	public function start()
 	{
+		// Addings settings
 		register_setting( 'dev-templates', 'devt_page_downloads' );
+		// Add special metaboxes
 		$this->special_metaboxes();
 	}
 

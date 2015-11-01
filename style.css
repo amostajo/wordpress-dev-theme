@@ -99,7 +99,16 @@ p {
 	margin-bottom: 30px;
 }
 
-#documentation h3 {
+section#addon h2 {
+	border-bottom: 1px solid #f7f7f7;
+	margin-top: 40px;
+	padding-bottom: 10px;
+	margin-bottom: 30px;
+	font-size: 29px;
+}
+
+#documentation h3,
+section#addon h3 {
 	border-bottom: 1px solid #f7f7f7;
 	padding-bottom: 10px;
 	margin-bottom: 10px;
@@ -107,7 +116,9 @@ p {
 }
 
 #documentation h4,
-#documentation h5 {
+#documentation h5,
+section#addon h4,
+section#addon h5 {
 	border-bottom: 1px solid #F9F9F9;
 	padding-bottom: 10px;
 	margin-bottom: 10px;
@@ -137,4 +148,37 @@ a.btn.btn-download:hover {
 
 section#head .downloads .icon {
 	font-size: 100px;
+}
+
+section#addon-head {
+	background-color: #748495;
+	color: #fff;
+	text-shadow: 1px 1px 2px #444;
+}
+
+section#addon-head h1 small {
+	color: #f2f2f2;
+}
+
+section#addon-head a.btn {
+	text-shadow: none;
+}
+
+section#addon {
+	padding-top: 40px;
+}
+
+section#addon-head .extra-link a {
+	color: #fff;
+	padding-top: 8px;
+	display: block;
+	margin-left: 10px;
+}
+
+section#addon-head .image .enlarge-image {
+	color: #fff;
+}
+
+section#addon-head .image a {
+	text-decoration: none;
 }

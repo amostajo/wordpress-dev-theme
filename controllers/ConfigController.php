@@ -2,6 +2,7 @@
 
 namespace DevTemplates\Controllers;
 
+use DevTemplates\Models\Addon;
 use DevTemplates\Main as Configuration;
 use Amostajo\LightweightMVC\Controller as Controller;
 
@@ -95,6 +96,19 @@ class ConfigController extends Controller
 			'1.0.2',
 			true
 		);
+		wp_register_script(
+			'lightbox',
+			get_template_directory_uri() . $config->get( 'paths.bower' ) . 'lightbox2/dist/js/lightbox.min.js',
+			[ 'jquery' ],
+			'2.8.1',
+			true
+		);
+		wp_register_style(
+			'lightbox',
+			get_template_directory_uri() . $config->get( 'paths.bower' ) . 'lightbox2/dist/css/lightbox.css',
+			[],
+			'2.8.1'
+		);
 		if ( ! is_admin() ) {
 			wp_enqueue_style( 'freelancer-theme' );
 			wp_enqueue_script( 'freelancer-theme' );
@@ -122,11 +136,48 @@ class ConfigController extends Controller
 	 */
 	public function start()
 	{
+		// Register menus
 		register_nav_menus( [
 			Configuration::MENU_HEADER 			=> __( 'Header menu', 'DevTemplates' ),
 			Configuration::MENU_FOOTER 			=> __( 'Footer menu', 'DevTemplates' ),
 			Configuration::MENU_DOCUMENTATION 	=> __( 'Documentation menu', 'DevTemplates' ),
 		] );
+		// Register new post type
+		register_post_type(
+			'addon',
+			[
+				'labels'				=> [
+											'name'               => _x( 'Addons', 'addons', 'DevTemplate' ),
+											'singular_name'      => _x( 'Addon', 'addon', 'DevTemplate' ),
+											'menu_name'          => _x( 'Addons', 'admin menu', 'DevTemplate' ),
+											'name_admin_bar'     => _x( 'Addon', 'add new on admin bar', 'DevTemplate' ),
+											'add_new'            => _x( 'Add New', 'book', 'DevTemplate' ),
+											'add_new_item'       => __( 'Add New Addon', 'DevTemplate' ),
+											'new_item'           => __( 'New Addon', 'DevTemplate' ),
+											'edit_item'          => __( 'Edit Addon', 'DevTemplate' ),
+											'view_item'          => __( 'View Addon', 'DevTemplate' ),
+											'all_items'          => __( 'All Addons', 'DevTemplate' ),
+											'search_items'       => __( 'Search Addons', 'DevTemplate' ),
+											'parent_item_colon'  => __( 'Parent Addons:', 'DevTemplate' ),
+											'not_found'          => __( 'No Addons found.', 'DevTemplate' ),
+											'not_found_in_trash' => __( 'No Addons found in Trash.', 'DevTemplate' )
+										],
+				'description'			=> 'Wordpress Development Templates Add-ons',
+				'public'				=> true,
+				'publicly_queryable'	=> true,
+				'show_ui'				=> true,
+				'show_in_menu'			=> true,
+				'query_var'				=> '/?{query_var_string}={single_post_slug}',
+				'rewrite'				=> [ 'slug' => 'add-ons' ],
+				'capability_type'		=> 'post',
+				'has_archive'			=> true,
+				'hierarchical'			=> false,
+				'menu_position'			=> null,
+				'supports'				=> [ 'title', 'editor', 'author', 'thumbnail', 'post-formats' ],
+				'menu_icon'				=> get_template_directory_uri() . '/img/favicon.png',
+				'register_meta_box_cb'	=> [ &$this, 'register_metabox_addon' ]
+			]
+		);
 	}
 
 	/**
@@ -150,5 +201,34 @@ class ConfigController extends Controller
 				break;
 		}
 		wp_nav_menu( $args );
+	}
+
+	/**
+	 * Registers metabox for addons.
+	 * @since 1.0.0
+	 */
+	public function register_metabox_addon()
+	{
+		add_meta_box(
+			'devt_addon',
+			__( 'Project information', 'LucyVegas' ),
+			[ &$this, 'metabox_addon' ],
+			'addon'
+		);
+	}
+
+	/**
+	 * Displays the addon metabox.
+	 * @since 1.0.0
+	 *
+	 * @param object $post WP_Post.
+	 */
+	public function metabox_addon( $post )
+	{
+		wp_nonce_field( 'metabox_addon', 'metabox_addon_nonce' );
+
+		$this->view->show( 'admin.metaboxes.addon', [
+			'addon' => Addon::find( $post->ID ),
+		] );
 	}
 }
