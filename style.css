@@ -182,3 +182,94 @@ section#addon-head .image .enlarge-image {
 section#addon-head .image a {
 	text-decoration: none;
 }
+
+section#addon-head .composer,
+section#addon-head .bower {
+	background-color: #EDC92C;
+	border-radius: 5px;
+	padding: 5px 10px;
+}
+
+section#addon-head .bower .icon {
+	background-image: url('img/bower_small.png');
+}
+
+section#addon-head .composer .icon {
+	background-image: url('img/composer_small.png');
+}
+
+section#addon-head .bower .icon,
+section#addon-head .composer .icon {
+	background-repeat: no-repeat;
+	background-position: left center;
+	height: 55px;
+	width: 50px;
+	float: left;
+	background-color: #EDC92C;
+}
+
+section#addon-head .bower span.title,
+section#addon-head .composer span.title {
+	display: block;
+	font-style: italic;
+	color: #656565;
+	text-transform: uppercase;
+	text-shadow: 0 0 1px #fff;
+	font-weight: bolder;
+}
+
+section#addon-head .bower span.value,
+section#addon-head .composer span.value {
+	background-color: #000000;
+	width: 100%;
+	display: block;
+	padding: 7px 15px;
+	color: #2EFF00;
+	text-shadow: none;
+	padding-left: 65px;
+}
+
+section#addons .addon {
+	border: 1px solid #2C3E50;
+	box-shadow: 0 0 2px 0 #aaa;
+	max-width: 300px;
+	background-color: #18BC9C;
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+section#addons .addon .header {
+	position: relative;
+}
+
+section#addons .addon a:hover img {
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+section#addons .addon .name {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	padding-left: 5px;
+	text-shadow: 0 0 5px #000;
+	background-color: rgba(0,0,0,0.4);
+	width: 100%;
+}
+
+section#addons .addon .description {
+	padding: 10px;
+    text-shadow: 0 0 1px #2A2A2A;
+    min-height: 120px;
+}
+
+section#addon .information {
+	background-color: #18BC9C;
+	padding: 15px;
+	color: #fff;
+	text-shadow: 0 0 1px #525252;
+	margin-bottom: 20px;
+}

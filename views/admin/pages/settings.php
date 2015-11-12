@@ -18,6 +18,16 @@
 				</td>
 			</tr>
 
+			<tr valign="top">
+				<th scope="row"><?php _e( 'Add-ons page', 'DevTemplates' ) ?></th>
+				<td>
+					<?php wp_dropdown_pages( [
+						'name' 		=> 'devt_page_addons',
+						'selected'	=> get_option( 'devt_page_addons', 0 ) 
+					] ) ?>
+				</td>
+			</tr>
+
 		</table>
 
 		<?php submit_button() ?>

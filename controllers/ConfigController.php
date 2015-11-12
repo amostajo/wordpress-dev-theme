@@ -178,6 +178,7 @@ class ConfigController extends Controller
 				'register_meta_box_cb'	=> [ &$this, 'register_metabox_addon' ]
 			]
 		);
+		add_theme_support( 'post-thumbnails' );
 	}
 
 	/**
@@ -230,5 +231,34 @@ class ConfigController extends Controller
 		$this->view->show( 'admin.metaboxes.addon', [
 			'addon' => Addon::find( $post->ID ),
 		] );
+	}
+
+	/**
+	 * Filters the query for archives.
+	 * @since 1.0.0
+	 *
+	 * @param string $where Where SQL clause.
+	 * @param array  $args  Query arguments.
+	 *
+	 * @return string
+	 */
+	public function getarchives_where( $where, $args )
+	{
+		global $wpdb;
+		if ( get_the_ID() == get_option( 'devt_page_addons', 0 ) ) {
+			return $wpdb->prepare(
+				'WHERE post_type=%s AND post_status=%s',
+				'addon',
+				'publish'
+			);
+		} else if ( array_key_exists( 'post_type', $args ) ) {
+			return $wpdb->prepare(
+				'WHERE post_type=%s AND post_status=%s',
+				$args[ 'post_type' ],
+				'publish'
+			);
+
+		}
+		return $where;
 	}
 }

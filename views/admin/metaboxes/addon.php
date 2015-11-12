@@ -4,6 +4,34 @@
 
 		<tr>
 			<th>
+				<label for="composer"><?php _e( 'Composer command', 'DevTemplates' ) ?></label>
+			</th>
+			<td>
+				<input type="text"
+					id="composer"
+					name="composer"
+					value="<?php echo $addon->composer ?>"
+					placeholder="i.e. composer require amostajo\wordpress-theme"
+				/>
+			</td>
+		</tr>
+
+		<tr>
+			<th>
+				<label for="bower"><?php _e( 'Bower command', 'DevTemplates' ) ?></label>
+			</th>
+			<td>
+				<input type="text"
+					id="bower"
+					name="bower"
+					value="<?php echo $addon->bower ?>"
+					placeholder="i.e. bower install wp-addon"
+				/>
+			</td>
+		</tr>
+
+		<tr>
+			<th>
 				<label for="url"><?php _e( 'Addon URL', 'DevTemplates' ) ?></label>
 			</th>
 			<td>
@@ -46,7 +74,7 @@
 
 		<tr>
 			<th>
-				<label for="supported_version"><?php _e( 'WDT version', 'DevTemplates' ) ?></label>
+				<label for="supported_version"><?php _e( 'Core version', 'DevTemplates' ) ?></label>
 			</th>
 			<td>
 				<input type="text"
@@ -83,6 +111,15 @@
 					value="<?php echo $addon->github_repo ?>"
 					placeholder="i.e. wordpress-theme"
 				/>
+			</td>
+		</tr>
+
+		<tr>
+			<th>
+				<label for="description"><?php _e( 'Description', 'DevTemplates' ) ?></label>
+			</th>
+			<td>
+				<?php wp_editor( $addon->description, 'description' ) ?>
 			</td>
 		</tr>
 

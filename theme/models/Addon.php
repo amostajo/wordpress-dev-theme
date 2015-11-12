@@ -2,6 +2,7 @@
 
 namespace DevTemplates\Models;
 
+use Amostajo\WPPluginCore\Cache;
 use Amostajo\LightweightMVC\Model;
 use Amostajo\LightweightMVC\Traits\FindTrait;
 
@@ -34,18 +35,26 @@ class Addon extends Model
 		'name'					=> 'post_title',
 		// Slug
 		'slug'					=> 'post_name',
+		// Instructions
+		'instructions'			=> 'post_content',
 		// Project or addon URL.
 		'url'					=> 'meta_url',
 		// Download url
 		'download_url'			=> 'meta_download_url',
 		// Software version
 		'version'				=> 'meta_version',
+		// Description
+		'description'			=> 'post_excerpt',
 		// Wordpress Dev Templated supported version
 		'supported_version'		=> 'meta_supported_version',
 		// GitHub username
 		'github_username'		=> 'meta_github_username',
 		// GitHub repository
 		'github_repo'			=> 'meta_github_repo',
+		// Composer comand
+		'composer'				=> 'meta_composer',
+		// Bower comand
+		'bower'					=> 'meta_bower',
 		// Addon permalink
 		'permalink'				=> 'func_get_permalink',
 		// Github link
@@ -56,6 +65,8 @@ class Addon extends Model
 		'image_url' 			=> 'func_get_image_url',
 		// Thumb of the image
 		'thumb_image_url' 		=> 'func_get_thumb_image_url',
+		// Thumb of the image to display on search pages
+		'search_image_url' 		=> 'func_get_search_image_url',
 	];
 
 	/**
@@ -134,14 +145,44 @@ class Addon extends Model
 	protected function get_thumb_image_url()
 	{
 		$url = $this->image_url;
-		if ( $url ) {
-			return resize_image(
-				$url,
-				400,
-				220,
-				false
-			);
-		}
-		return;
+		return Cache::remember(
+			'addon_' . $this->ID . '_thumbimage',
+			43200,
+			function() use($url) {
+				if ( $url ) {
+					return resize_image(
+						$url,
+						400,
+						220
+					);
+				}
+				return;
+			}
+		);
+	}
+
+	/**
+	 * Returns thumbnail size image url.
+	 * @since 1.0
+	 *
+	 * @return string
+	 */
+	protected function get_search_image_url()
+	{
+		$url = $this->image_url;
+		return Cache::remember(
+			'addon_' . $this->ID . '_searchimage',
+			43200,
+			function() use($url) {
+				if ( $url ) {
+					return resize_image(
+						$url,
+						300,
+						135
+					);
+				}
+				return;
+			}
+		);
 	}
 }

@@ -25,6 +25,7 @@ class AdminController extends Controller
 	{
 		// Addings settings
 		register_setting( 'dev-templates', 'devt_page_downloads' );
+		register_setting( 'dev-templates', 'devt_page_addons' );
 		// Add special metaboxes
 		$this->special_metaboxes();
 	}

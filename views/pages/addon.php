@@ -11,6 +11,30 @@
 					<small class="hint"><?php _e( '(addon)', 'DevTemplates' ) ?></small>
 				</h1>
 
+				<?php if ( $addon->composer ) : ?>
+					<div class="composer">
+						<div class="icon"></div>
+						<span class="title">
+							<?php _e( 'Composer command', 'DevTemplates' ) ?>
+						</span>
+						<span class="value">
+							<?php echo $addon->composer ?>
+						</span>
+					</div>
+				<?php endif ?>
+
+				<?php if ( $addon->bower ) : ?>
+					<div class="bower">
+						<div class="icon"></div>
+						<span class="title">
+							<?php _e( 'Bower command', 'DevTemplates' ) ?>
+						</span>
+						<span class="value">
+							<?php echo $addon->bower ?>
+						</span>
+					</div>
+				<?php endif ?>
+
 				<?php if ( $addon->download_url ) : ?>
 					<div class="download">
 						<a class="btn btn-outline btn-download"
@@ -83,6 +107,24 @@
 			</div>
 
 			<div class="col-md-4">
+
+				<div class="information">
+
+					<?php if ( $addon->description ) : ?>
+						<p><?php echo $addon->description ?></p>
+					<?php endif ?>
+
+					<?php if ( $addon->version ) : ?>
+						<div><strong><?php _e( 'Version', 'DevTemplates' ) ?>:</strong></div>
+						<p><?php echo $addon->version ?></p>
+					<?php endif ?>
+
+					<?php if ( $addon->supported_version ) : ?>
+						<div><strong><?php _e( 'Min core version', 'DevTemplates' ) ?>:</strong></div>
+						<p><?php echo $addon->supported_version ?></p>
+					<?php endif ?>
+
+				</div>
 			
 				<?php if ( $addon->github ) : ?>
 					<div class="github-card"

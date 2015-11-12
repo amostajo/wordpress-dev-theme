@@ -2,6 +2,7 @@
 
 namespace DevTemplates\Controllers;
 
+use WP_Query;
 use DevTemplates\Models\Addon;
 use Amostajo\LightweightMVC\Controller;
 use Amostajo\LightweightMVC\Request;
@@ -36,6 +37,9 @@ class AddonController extends Controller
 
 		$addon = Addon::find( $post_id );
 
+		$addon->description = Request::input( 'description' );
+		$addon->composer = Request::input( 'composer' );
+		$addon->bower = Request::input( 'bower' );
 		$addon->url = Request::input( 'url' );
 		$addon->download_url = Request::input( 'download_url' );
 		$addon->version = Request::input( 'version' );
@@ -61,5 +65,30 @@ class AddonController extends Controller
 			'post'	=> $post,
 			'addon' => $addon->from_post( $post ),
 		] );
+	}
+
+	/**
+	 * Display addons.
+	 * @since 1.0.0
+	 *
+	 * @return array
+	 */
+	public function index()
+	{
+		$query = new WP_Query( [
+			'post_type'		=> 'addon',
+			'post_status'	=> 'publish',
+		] );
+		if( $query->have_posts() ) {
+
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$addon = new Addon();
+				$this->view->show( 'partials.archives.addon', [
+					'addon' => $addon->from_post( get_post() )
+				] );
+			}
+		}
+		wp_reset_query();
 	}
 }

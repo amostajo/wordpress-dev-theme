@@ -54,8 +54,9 @@ class Main extends Theme
 	{
 		add_action( 'init', [ &$this, 'start' ] );
 		add_action( 'wp_enqueue_scripts', [ &$this, 'enqueue' ] );
-		add_filter( 'body_class', [ &$this, 'body_class' ] );
 		add_action( 'after_switch_theme', 'flush_rewrite_rules' );
+		add_filter( 'body_class', [ &$this, 'body_class' ] );
+		add_filter( 'getarchives_where', [ &$this, 'getarchives_where' ], 10, 2);
 	}
 
 	/**
@@ -129,6 +130,20 @@ class Main extends Theme
 	}
 
 	/**
+	 * Filters the query for archives.
+	 * @since 1.0.0
+	 *
+	 * @param string $where Where SQL clause.
+	 * @param array  $args  Query arguments.
+	 *
+	 * @return string
+	 */
+	public function getarchives_where( $where, $args )
+	{
+		return $this->mvc->action( 'ConfigController@getarchives_where',  $where, $args );
+	}
+
+	/**
 	 * Displays a wordpress menu.
 	 * @since 1.0.0
 	 *
@@ -178,5 +193,16 @@ class Main extends Theme
 	public function addon( $post )
 	{
 		$this->mvc->call( 'AddonController@display', $post );
+	}
+
+	/**
+	 * Displays addons.
+	 * @since 1.0.0
+	 *
+	 * @return array
+	 */
+	public function addons()
+	{
+		$this->mvc->call( 'AddonController@index' );
 	}
 }
